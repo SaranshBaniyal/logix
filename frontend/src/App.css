@@ -1,0 +1,299 @@
+.App {
+  background: linear-gradient(180deg, #110421, #130344); 
+    text-align: center;
+    background-image: url('./assets/5641363.jpg');
+    background-size: 100%
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.home-container {
+  
+  /* background-image: 'https://www.freepik.com/free-vector/gradient-network-connection-background_12643219.htm#query=big%20data%20background&position=45&from_view=keyword&track=ais'; */
+  /* background-size: 100%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+  /* background-color: #f0f0f0; */
+}
+.title{
+  color:white;
+  font-size: 50px;
+  margin-top: 50px;
+  font-weight: 700;
+}
+.login-options {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.login-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.login-card {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #110421;
+  color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.login-card.selected {
+  background-color: #ff7f50; /* Change to the desired color for the selected card */
+  transform: scale(1.1); /* Enlarge the size of the selected card */
+}
+
+.btnlink{
+  text-decoration: none;
+  color: white;
+}
+.btn1{
+  background: linear-gradient(180deg, #110421, #130344);
+  color: white;
+  padding: 25px 50px;
+  font-size: 22px;
+  margin: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.login-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav{
+  position: fixed;
+  width: 100%;
+  color: #130344;
+  display: flex;
+  justify-content: start;
+  /* padding: 0px 20px; */
+  height: 100px;
+  background-color:white;
+}
+
+.logo{
+  width: 180px;
+}
+
+.manufacturer-page {
+  padding: 0px 50px;
+  color: white;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.left-panel {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+}
+
+.create-shipment-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.vertical-line {
+  flex: 0 0 2px;
+  height: 80%;
+  background-color: #ccc;
+  margin: 0 40px;
+}
+
+.right-panel {
+  flex: 6;
+}
+
+h2 {
+  text-align: center;
+}
+
+.shipment-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  color: black;
+  background-color: #f2f2f2;
+}
+
+/* Add more CSS styles as needed to refine the appearance of your components. */
+
+/* .manufacturer {
+  background-color: #ff7f50;
+}
+
+.distributor {
+  background-color: #87ceeb;
+}
+
+.retailer {
+  background-color: #98fb98;
+}
+
+.user {
+  background-color: #ff69b4;
+} */
+.new-shipment-page {
+  color: #ddd;
+  padding: 0px 30px;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  height: 100vh;
+}
+
+.left-panel {
+  flex: 1;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.right-panel {
+  flex: 2;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+/* Add more CSS styles as needed to refine the appearance of your components. */
+.signup-container {
+  padding: 0px 50px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+.signuwrapper{
+  width: 600px;
+}
+
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+
+.form-12{
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+}
+.form-12 div{
+  width: 50%;
+}
