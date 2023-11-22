@@ -96,6 +96,18 @@ contract Shipment {
         IDr++;
     }
 
+    function existmanu() view public returns(bool){
+        return manufacRegis[msg.sender];
+    }
+
+    function exisdistri() view public returns(bool){
+        return distriRegis[msg.sender];
+    }
+
+    function existretail() view public returns(bool){
+        return retailRegis[msg.sender];
+    }
+
     // ----------->shipment relation
     mapping(address => uint256[]) manushipment;
     mapping(address => uint256[]) distrishipment;
