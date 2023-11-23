@@ -12,7 +12,7 @@ pin = 4  # GPIO pin connected to the DHT22 sensor
 shipment_id = input("Enter the shipment ID: ")
 
 # Server information
-host = "296c-220-158-168-162.ngrok-free.app"
+host = "logix-backend.onrender.com"
 url = "/sensordata"
 
 while True:
@@ -25,12 +25,12 @@ while True:
     #     "temperature": temperature,
     #     "humidity": humidity,
     # }
-    json_payload = json.dumps(payload)
+    # json_payload = json.dumps(payload)
 
     # Specify headers
     headers = {
         "Content-Type": "application/json",
-        "ngrok-skip-browser-warning": "true",
+        # "ngrok-skip-browser-warning": "true",
     }
 
     # Establish a connection to the server
@@ -47,7 +47,9 @@ while True:
                 "temperature": temperature,
                 "humidity": humidity,
             }
-            
+
+            json_payload = json.dumps(payload)
+
             # Send the POST request
             connection.request("POST", url, json_payload, headers)
 
