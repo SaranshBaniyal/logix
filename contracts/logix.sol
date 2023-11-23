@@ -109,9 +109,25 @@ contract Shipment {
     }
 
     // ----------->shipment relation
-    mapping(address => uint256[]) manushipment;
-    mapping(address => uint256[]) distrishipment;
-    mapping(address => uint256[]) retailshipment;
+    mapping(address => uint256[]) public manushipment;
+    mapping(address => uint256[]) public distrishipment;
+    mapping(address => uint256[]) public retailshipment;
+
+    //----------------------------------------------------------
+    //----------------------------------------------------------
+
+    function showdistributershipment(address _address) public view returns(uint[] memory){
+        return distrishipment[_address];
+    }
+
+    function showmanufactshipment(address _address) public view returns(uint[] memory){
+        return manushipment[_address];
+    }
+
+    function showretailershipment(address _address) public view returns(uint[] memory){
+        return retailshipment[_address];
+    }
+
 
     //----------------------------------------------------------
     struct shipment {
@@ -146,6 +162,16 @@ contract Shipment {
         uint256 phno;
         uint256 price;
         bool inicondition;
+    }
+
+    function payToManufacturer(uint _shipmentid) public payable {
+        require(distriRegis[msg.sender] == true, "you must be a distributer");
+        require(
+            msg.value >= shipments[_shipmentid].distridetails.price,
+            "please pay the sufficient amount"
+        );
+        uint amount = shipments[_shipmentid].distridetails.price;
+        payable(address(this)).transfer(amount);
     }
 
     function createShipment(
@@ -193,21 +219,25 @@ contract Shipment {
         shipmentid++;
     }
 
-    function payToManufacturer(uint _shipmentid) public payable {
-        require(distriRegis[msg.sender] == true, "you must be a distributer");
-        require(
-            msg.value >= shipments[_shipmentid].distridetails.price,
-            "please pay the sufficient amount"
-        );
-        uint amount = shipments[_shipmentid].distridetails.price;
-        payable(address(this)).transfer(amount);
+    mapping (uint => bool) manu_distri;
+
+    function recievedbydistri(uint _id) public {
+        manu_distri[_id] = true;
     }
 
     function withdrawFundsByManufacturer(uint _shipmentid) public payable {
         require(manufacRegis[msg.sender] == true, "you must be a manufacturer");
-        //withdraw condition bachi hai
+        require(manu_distri[_shipmentid],"shipment not recieved yet");
         uint256 amount = shipments[_shipmentid].distridetails.price;
         payable(msg.sender).transfer(amount);
+    }
+
+    function withdrawback1(uint _shipmentid) public payable{
+        require(distriRegis[msg.sender] == true,
+            "you must be a distributer to continue furthur");
+        require(manu_distri[_shipmentid],"shipment not recieved yet");
+        //oracle ka function call hoga 
+        //if false aaya toh hi kar sakte hai
     }
 
     function distritoretail(
@@ -235,10 +265,36 @@ contract Shipment {
         payable(address(this)).transfer(amount);
     }
 
+    mapping (uint => bool) distri_retailer;
+
+    function recievedbyretailer(uint _id) public {
+        distri_retailer[_id] = true;
+    }
+
     function withdrawFundsByDistributer(uint _shipmentid) public payable {
         require(retailRegis[msg.sender] == true, "you must be a retailer");
-        //withdraw condition bachi hai
+        require(distri_retailer[_shipmentid],"shipment not recieved yet");
         uint256 amount = shipments[_shipmentid].retaildetails.price;
         payable(msg.sender).transfer(amount);
     }
+
+    function withdrawback2(uint _shipmentid) public payable{
+        require(retailRegis[msg.sender] == true,
+            "you must be a retailer");
+        require(distri_retailer[_shipmentid],"shipment not recieved yet");
+        //oracle ka function call hoga 
+        //if false aaya toh hi kar sakte hai
+    }
+    //----------------------------------> show shipment
+
+    function shipmentlist() public view returns(shipment[] memory){
+        return shipments;
+    }
+
+    function showshipment(uint _shipmentid) public view returns(shipment memory){
+        return shipments[_shipmentid-1];
+    }
 }
+
+
+//

@@ -123,6 +123,23 @@
   width: 180px;
 }
 
+.detailpage{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: white;
+}
+
+.detailpageWrapper{
+  gap: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .manufacturer-page {
   padding: 0px 50px;
   color: white;
@@ -173,6 +190,7 @@ h2 {
 
 .shipment-table {
   width: 100%;
+  color:'white';
   border-collapse: collapse;
   border: 1px solid #ddd;
 }
@@ -223,7 +241,9 @@ img {
   max-width: 100%;
   max-height: 100%;
 }
-
+.distributor123{
+  color: white;
+}
 .right-panel {
   flex: 2;
   padding: 20px;
@@ -306,4 +326,10 @@ textarea {
 }
 .form-12 div{
   width: 50%;
+}
+.distributor1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

@@ -7,12 +7,15 @@ import Distributor from './Components/Distributor';
 import User from './Components/User';
 import Newshipment from './Components/Newshipment';
 import Navbar from './Navbar';
-import Signup from './Components/Signup';
 import instance from './Shipment.json';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import logo from './assets/logix2-removebg-preview.png';
 import {ethers} from 'ethers'
+import Signupmnanu from './Components/Signupmanu';
+import Signupretail from './Components/Signupreta';
+import Signupdist from './Components/Signupdist';
+import Details from './Components/Details';
 
 function App() {
 
@@ -20,11 +23,14 @@ function App() {
   const abi = instance.abi
 
   const [address, setaddress] = useState('')
-  
+  const [contract, setcontract] = useState({})
+
+
   const setup = async ()=>{
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner()
-      const contract = new ethers.Contract(contractaddress,abi,signer)
+      const _contract = new ethers.Contract(contractaddress,abi,signer)
+      setcontract(_contract)
       console.log(contract)
   }
   useEffect(() => {
@@ -59,13 +65,16 @@ function App() {
 
         <Routes>
 
-          <Route path='/' element={<Home />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/manufacturer-route' element={<Manufacturer />} />
-          <Route path='/retailer-route' element={<Retailer />} />
-          <Route path='/distributor-route' element={<Distributor />} />
-          <Route path='/user-route' element={<User />} />
-          <Route path='/new-shipment' element={<Newshipment />} />
+          <Route path='/' element={<Home Contract = {contract}/>} />
+          <Route path='/details/:id' element={<Details Contract={contract} />} />
+          <Route path='/signup/manu' element={<Signupmnanu Contract = {contract}/>} />
+          <Route path='/signup/retail' element={<Signupretail Contract = {contract}/>} />
+          <Route path='/signup/distributor' element={<Signupdist Contract = {contract}/>} />
+          <Route path='/manufacturer-route' element={<Manufacturer Contract = {contract}/>} />
+          <Route path='/retailer-route' element={<Retailer Contract = {contract} />} />
+          <Route path='/distributor-route' element={<Distributor Contract = {contract} Address={address}/>} />
+          <Route path='/user-route' element={<User Contract = {contract}/>} />
+          <Route path='/new-shipment' element={<Newshipment Contract = {contract}/>} />
         </Routes>
       </div>
     </Router>

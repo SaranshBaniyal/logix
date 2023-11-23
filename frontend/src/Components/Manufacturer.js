@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Manufacturer = () => {
+const Manufacturer = (Contract) => {
+
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(()=>{
+    const shipmentArray = async()=>{
+      try {
+        const data = await Contract.Contract.shipmentlist();
+        const formattedData = data.map(row => ({
+          shipmentId: Number(row[0]),
+          manufacturerDetail: row[1],
+          distributorDetail: row[2],
+          retailerDetail: row[3]
+        }));
+        setTableData(formattedData);
+      } catch (error) {
+        console.log('====================================');
+        console.log(error);
+        console.log('====================================');
+      }
+    }
+    shipmentArray(); 
+  },[])
   return (
     <div className="manufacturer-page">
       <div className="left-panel">
@@ -14,26 +36,28 @@ const Manufacturer = () => {
           <thead>
             <tr>
               <th>Shipment ID</th>
-              <th>Product</th>
-              <th>Destination</th>
-              <th>Departure Date</th>
+              <th>Manufacturer details</th>
+              <th>Distributor details</th>
+              <th>Retailer details</th>
+              <th>More details</th>
+
             </tr>
           </thead>
           <tbody>
-            {/* Map through your departed shipments and render each row */}
-            <tr>
-              <td>001</td>
-              <td>Product A</td>
-              <td>Destination X</td>
-              <td>2023-10-25</td>
-            </tr>
-            <tr>
-              <td>002</td>
-              <td>Product B</td>
-              <td>Destination Y</td>
-              <td>2023-10-26</td>
-            </tr>
-            {/* Add more rows as needed */}
+          {/* <tbody> */}
+  {tableData.map((row, index) => (
+    <tr key={index}>
+      <td>{row.shipmentId}</td>
+      <td>{row.manufacturerDetail[2]}</td>
+      <td>{row.distributorDetail[2]}</td>
+      <td>{row.retailerDetail[2]}</td>
+      <td>
+    <button><Link to={`/details/${row.shipmentId}`}>Click here </Link></button>
+ </td>
+    </tr>
+  ))}
+{/* </tbody> */}
+
           </tbody>
         </table>
       </div>
