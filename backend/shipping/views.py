@@ -109,4 +109,4 @@ class SetThresholdConditions(APIView):
     
 class CheckKar(APIView):
     def get(self, request, format=None):    
-        return Response({'condition_ok': True, 'message': 'Within the Threshold'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'condition_ok': True, 'message': 'Within the Threshold'}, status=status.HTTP_200_OK)
