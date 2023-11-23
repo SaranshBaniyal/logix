@@ -2,6 +2,9 @@ from django.urls import path
 from shipping import views
 
 urlpatterns = [
-    path("receive-sensor-data", views.ReceiveSensorData.as_view(), name="receive-sensor-data"),
-    path('set-threshold-conditions', views.SetThresholdConditions.as_view(), name='set-threshold-conditions'),
+    path("sensordata", views.ReceiveSensorData.as_view(), name="sensordata"),
+    path("setconditions", views.SetThresholdConditions.as_view(), name="setconditions"),
+    path("checkconditions", views.CheckCondition.as_view(), name="checkconditions"),
+
+    path("checkkar", views.CheckKar.as_view(), name="checkkar"),
 ]
